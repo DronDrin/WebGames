@@ -46,8 +46,8 @@ class Minesweeper extends Game {
         let mouseDownTime, mouseHold = false, lastDownEvent, mouseInterrupted = false;
         const getEventCords =
             isTouchDevice() ? e => ({
-                x: e.touches[0].clientX,
-                y: e.touches[0].clientY
+                x: (e.touches.length === 0 ? e.changedTouches : e.touches)[0].pageX,
+                y: (e.touches.length === 0 ? e.changedTouches : e.touches)[0].pageY
             })
             : e => ({
                 x: e.clientX,
