@@ -7,10 +7,21 @@ let currWindow;
 let game = null;
 
 function openWindow(name) {
-    if (currWindow)
-        removeClass(currWindow, 'main__window_active');
-    currWindow = document.querySelector(`.main__window[data-window="${name}"]`)
-    addClass(currWindow, 'main__window_active');
+    const windowToOpen = document.querySelector(`.main__window[data-window="${name}"]`);
+    if (windowToOpen.classList.contains('main__window_modal')) {
+        addClass(document.querySelector(`.main__window[data-window="${name}"]`),
+            'main__window_active');
+    } else {
+        if (currWindow)
+            removeClass(currWindow, 'main__window_active');
+        currWindow = windowToOpen;
+        addClass(currWindow, 'main__window_active');
+    }
+}
+
+function closeModalWindow(name) {
+    removeClass(document.querySelector(`.main__window[data-window="${name}"]`),
+        'main__window_active');
 }
 
 window.addEventListener('load', () => {
@@ -42,16 +53,21 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.main__home-button').forEach(b =>
         b.addEventListener('click', endGame));
 
-    document.querySelectorAll('.main__resign').forEach(el => {
+    document.querySelectorAll('.main__to-home').forEach(el => {
         el.addEventListener('click', () => {
-            if (game)
-                game.lose();
+            endGame();
         });
     });
 
     window.addEventListener('resize', () => {
-       if (game)
-           game.resize();
+        if (game)
+            game.resize();
+    });
+
+    document.querySelectorAll('.main__modal-close').forEach(el => {
+       el.addEventListener('click', () => {
+            closeModalWindow(el.getAttribute('data-window'));
+       });
     });
 });
 
@@ -60,5 +76,5 @@ function endGame() {
         game.cleanup();
         game = null;
     }
-    openWindow('selector')
+    openWindow('selector');
 }

@@ -36,6 +36,11 @@
     align-items: center;
 }
 
+.main__window_modal {
+    z-index: 10;
+    background-color: color-mix(in srgb, var(--c0) 80%, transparent);
+}
+
 .main__header {
     font-size: 40pt;
 }
@@ -63,7 +68,7 @@
     display: inline;
 }
 
-.main__resign {
+.main__to-home {
     position: absolute;
     left: 20px;
     top: 20px;

@@ -51,20 +51,22 @@
             Играть!
         </div>
     </div>
-    <div class="main__window" data-window="win">
+    <div class="main__window main__window_modal" data-window="win">
         <h2 class="main__header">Вы победили!</h2>
-        <div class="button main__home-button">
+        <div class="button main__home-button main__modal-close" data-window="lose">
             На главную
         </div>
+        <div class="button main__modal-close" data-window="lose">Ещё посмотрю</div>
     </div>
-    <div class="main__window" data-window="lose">
+    <div class="main__window main__window_modal" data-window="lose">
         <h2 class="main__header">Вы проиграли!</h2>
-        <div class="button main__home-button">
+        <div class="button main__home-button main__modal-close" data-window="lose">
             На главную
         </div>
+        <div class="button main__modal-close" data-window="lose">Ещё посмотрю</div>
     </div>
     <div class="main__window" data-window="minesweeper">
-        <div class="button main__resign">Главная</div>
+        <div class="button main__to-home">Главная</div>
         <div class="minesweeper">
             <div class="minesweeper__body">
                 <div class="minesweeper__field">
