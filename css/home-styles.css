@@ -82,8 +82,6 @@
 }
 
 .main__to-home {
-    position: absolute;
-    left: 20px;
-    top: 20px;
     font-size: 15pt;
+    align-self: start;
 }

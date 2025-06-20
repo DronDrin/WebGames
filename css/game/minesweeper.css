@@ -1,10 +1,10 @@
 @import "minesweeper-color-scheme.css";
 
 .minesweeper {
-    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
 }
 
 .minesweeper__body {
@@ -14,8 +14,6 @@
 .minesweeper__field {
     display: grid;
     grid-auto-flow: column;
-    width: 200px;
-    height: 200px;
     user-select: none;
     border: 1px solid var(--c0);
 }
