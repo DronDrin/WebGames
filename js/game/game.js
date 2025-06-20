@@ -1,6 +1,7 @@
 class Game {
-    constructor(el) {
+    constructor(el, difficulty) {
         this.el = el;
+        this.difficulty = difficulty;
     }
 
     cleanup() {

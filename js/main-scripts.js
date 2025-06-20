@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
     playButton.addEventListener('click', () => {
         const gameI = games[gameSlider.chosen];
         openWindow(gameI);
-        game = gamesFactories[gameI](currWindow);
+        game = gamesFactories[gameI](currWindow, difficultySlider.chosen);
     });
 
     document.querySelectorAll('.main__resign').forEach(el => {
