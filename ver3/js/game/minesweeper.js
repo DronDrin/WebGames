@@ -53,7 +53,7 @@ class Minesweeper extends Game {
             if (e.target.classList.contains('minesweeper__cell')) {
                 const cell = e.target;
                 const i = [...cell.parentNode.children].indexOf(cell);
-                let open = e.button === 0;
+                let open = !e.button;
                 if (Date.now() - mouseDownTime > longHoldThreshold)
                     open = false;
                 this.cellClick(cell, Math.floor(i / this.height), i % this.height, open);
@@ -78,8 +78,13 @@ class Minesweeper extends Game {
         };
         mouseTimer();
 
-        this.fieldEl.addEventListener('mouseup', this.mouseUp);
-        this.fieldEl.addEventListener('mousedown', this.mouseDown);
+        if (isTouchDevice()) {
+            this.fieldEl.addEventListener('touchstart', this.mouseDown);
+            this.fieldEl.addEventListener('touchend', this.mouseUp);
+        } else {
+            this.fieldEl.addEventListener('mouseup', this.mouseUp);
+            this.fieldEl.addEventListener('mousedown', this.mouseDown);
+        }
         this.fieldEl.addEventListener('contextmenu', this.contextMenu);
         this.lost = false;
     }
@@ -251,8 +256,13 @@ class Minesweeper extends Game {
 
     cleanup() {
         this.fieldEl.innerHTML = '';
-        this.fieldEl.removeEventListener('mouseup', this.mouseUp);
-        this.fieldEl.removeEventListener('mousedown', this.mouseDown);
+        if (isTouchDevice()) {
+            this.fieldEl.removeEventListener('touchstart', this.mouseDown);
+            this.fieldEl.removeEventListener('touchend', this.mouseUp);
+        } else {
+            this.fieldEl.removeEventListener('mouseup', this.mouseUp);
+            this.fieldEl.removeEventListener('mousedown', this.mouseDown);
+        }
         this.fieldEl.removeEventListener('contextmenu', this.contextMenu);
     }
 }

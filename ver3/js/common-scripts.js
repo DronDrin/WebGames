@@ -1,4 +1,4 @@
-const VERSION = 2;
+const VERSION = 3;
 
 function addClass(el, className) {
     if (!el.classList.contains(className))
@@ -19,4 +19,8 @@ function shuffleArray(arr) {
         .map(value => ({value, sort: Math.random()}))
         .sort((a, b) => a.sort - b.sort)
         .map(({value}) => value);
+}
+
+function isTouchDevice() {
+    return window.matchMedia("(pointer: coarse)").matches;
 }
