@@ -1,5 +1,5 @@
 let gameSlider, difficultySlider;
-
+let playButton;
 let currWindow;
 
 function openWindow(name) {
@@ -12,6 +12,8 @@ function openWindow(name) {
 window.addEventListener('load', () => {
     gameSlider = new Slider(document.getElementById('gameSlider'));
     difficultySlider = new Slider(document.getElementById('difficultySlider'));
+    playButton = document.getElementById('playButton');
+
     currWindow = document.querySelector('.main__window_active');
     openWindow('selector');
 
@@ -20,6 +22,10 @@ window.addEventListener('load', () => {
             .forEach(rules => removeClass(rules, 'main__rules_active'));
         addClass(document.querySelector(`.main__rules:nth-child(${i + 1})`), 'main__rules_active');
     };
+
+    playButton.addEventListener('click', () => {
+
+    });
 });
 
 
