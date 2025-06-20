@@ -40,6 +40,12 @@ window.addEventListener('load', () => {
 
     playButton.addEventListener('click', () => {
         const gameI = gameSlider.chosen;
+
+        if (gameI >= gamesFactories.length) {
+            alert("К сожалению, данная игра пока в разработке.")
+            return;
+        }
+
         openWindow(games[gameI]);
         game = gamesFactories[gameI](currWindow, difficultySlider.chosen);
         game.win = () => {
