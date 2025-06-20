@@ -56,11 +56,12 @@ class Minesweeper extends Game {
         };
 
         this.fieldEl.addEventListener('mousedown', this.mouseDown);
-        this.fieldEl.addEventListener('contextmenu', this.contextMenu)
+        this.fieldEl.addEventListener('contextmenu', this.contextMenu);
+        this.lost = false;
     }
 
     cellClick(cell, x, y, open) {
-        if (cell.classList.contains('minesweeper__cell_open'))
+        if (this.lost || cell.classList.contains('minesweeper__cell_open'))
             return;
         if (open) {
             if (cell.classList.contains('minesweeper__cell_flag'))
@@ -77,7 +78,7 @@ class Minesweeper extends Game {
                 numEl.innerText = val;
                 cell.appendChild(numEl);
             } else if (val === 9) {
-                this.lose();                // todo: beautiful lose animation
+                this.loseAnimation(x, y);
             } else
                 this.propagateArea(x, y);
             this.cellOpened();
@@ -99,6 +100,24 @@ class Minesweeper extends Game {
             }
             this.updateMinesLeft();
         }
+    }
+
+    loseAnimation(x, y) {
+        this.lost = true;
+
+        for (let i = 0; i < this.width; i++)
+            for (let j = 0; j < this.height; j++)
+                setTimeout(() => {
+                    if (this.field[i][j] === 9) {
+                        const cell = this.fieldEl.children[this.height * i + j];
+                        addClass(cell, 'minesweeper__cell_mine');
+
+                        const mineEl = document.createElement('img');
+                        mineEl.classList.add('minesweeper__mine');
+                        mineEl.src = 'img/minesweeper/mine.png';
+                        cell.appendChild(mineEl);
+                    }
+                }, Math.sqrt(Math.abs(i - x) ** 2 + Math.abs(j - y) ** 2) * 30);
     }
 
     cellOpened() {
