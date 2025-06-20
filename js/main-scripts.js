@@ -28,6 +28,10 @@ window.addEventListener('load', () => {
     playButton.addEventListener('click', () => {
         openWindow(games[gameSlider.chosen]);
     });
+
+    document.querySelectorAll('.main__resign').forEach(el => {
+        el.addEventListener('click', () => openWindow('selector'));
+    });
 });
 
 
