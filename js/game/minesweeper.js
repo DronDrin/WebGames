@@ -108,14 +108,18 @@ class Minesweeper extends Game {
         for (let i = 0; i < this.width; i++)
             for (let j = 0; j < this.height; j++)
                 setTimeout(() => {
+                    const cell = this.fieldEl.children[this.height * i + j];
                     if (this.field[i][j] === 9) {
-                        const cell = this.fieldEl.children[this.height * i + j];
                         addClass(cell, 'minesweeper__cell_mine');
+                        if (i === x && j === y)
+                            addClass(cell, 'minesweeper__cell_lost')
 
                         const mineEl = document.createElement('img');
                         mineEl.classList.add('minesweeper__mine');
                         mineEl.src = 'img/minesweeper/mine.png';
                         cell.appendChild(mineEl);
+                    } else {
+                        addClass(cell, 'minesweeper__cell_not-mine');
                     }
                 }, Math.sqrt(Math.abs(i - x) ** 2 + Math.abs(j - y) ** 2) * 30);
     }
