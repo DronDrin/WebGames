@@ -44,8 +44,23 @@ class Minesweeper extends Game {
         this.leftToOpen = this.width * this.height - this.mines;
 
         let mouseDownTime, mouseHold = false, lastDownEvent, mouseInterrupted = false;
+        const getEventCords =
+            isTouchDevice() ? e => ({
+                x: e.touches[0].clientX,
+                y: e.touches[0].clientY
+            })
+            : e => ({
+                x: e.clientX,
+                y: e.clientY
+            });
         this.mouseUp = e => {
             mouseHold = false;
+
+            const currCords = getEventCords(e);
+            const prevCords = getEventCords(lastDownEvent);
+            if (Math.abs(currCords.x - prevCords.x) + Math.abs(currCords.y - prevCords.y) > 40) {
+                return;
+            }
             if (mouseInterrupted) {
                 mouseInterrupted = false;
                 return;
