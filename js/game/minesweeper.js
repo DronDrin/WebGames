@@ -89,8 +89,7 @@ class Minesweeper extends Game {
                 cell.classList.remove('minesweeper__cell_flag');
                 cell.innerHTML = '';
                 this.minesSetByPlayer--;
-            }
-            else {
+            } else {
                 cell.classList.add('minesweeper__cell_flag');
                 const imgEl = document.createElement("img");
                 imgEl.classList.add('minesweeper__flag');
@@ -122,6 +121,7 @@ class Minesweeper extends Game {
                         addClass(cell, 'minesweeper__cell_not-mine');
                     }
                 }, Math.sqrt(Math.abs(i - x) ** 2 + Math.abs(j - y) ** 2) * 30);
+        setTimeout(() => this.lose(), this.width * 30 + 100);
     }
 
     cellOpened() {
