@@ -1,8 +1,10 @@
 const games = ['minesweeper', 'anti-crossword', 'tetris'];
+const gamesFactories = [];
 
 let gameSlider, difficultySlider;
 let playButton;
 let currWindow;
+let game = null;
 
 function openWindow(name) {
     if (currWindow)
@@ -26,11 +28,19 @@ window.addEventListener('load', () => {
     };
 
     playButton.addEventListener('click', () => {
-        openWindow(games[gameSlider.chosen]);
+        const gameI = games[gameSlider.chosen];
+        openWindow(gameI);
+        game = gamesFactories[gameI](currWindow);
     });
 
     document.querySelectorAll('.main__resign').forEach(el => {
-        el.addEventListener('click', () => openWindow('selector'));
+        el.addEventListener('click', () => {
+            if (game) {
+                game.cleanup();
+                game = null;
+            }
+            openWindow('selector')
+        });
     });
 });
 
