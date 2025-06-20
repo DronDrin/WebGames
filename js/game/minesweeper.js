@@ -194,6 +194,8 @@ class Minesweeper extends Game {
 
         this.fieldEl.style.width = target.width + 'px';
         this.fieldEl.style.height = target.height + 'px';
+
+        this.fieldEl.style.fontSize = (target.height / this.height / 2) + 'px';
     }
 
 

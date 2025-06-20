@@ -22,7 +22,6 @@
     align-items: center;
     background-color: var(--c2);
     transition: 0.2s;
-    font-size: 20px;
 }
 
 .minesweeper__cell_open {
