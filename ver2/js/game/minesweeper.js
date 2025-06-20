@@ -118,7 +118,7 @@ class Minesweeper extends Game {
                 cell.classList.add('minesweeper__cell_flag');
                 const imgEl = document.createElement("img");
                 imgEl.classList.add('minesweeper__flag');
-                imgEl.src = `/ver${VERSION}/img/minesweeper/flag.png`;
+                imgEl.src = `ver${VERSION}/img/minesweeper/flag.png`;
                 cell.appendChild(imgEl);
                 this.minesSetByPlayer++;
             }
@@ -140,7 +140,7 @@ class Minesweeper extends Game {
 
                         const mineEl = document.createElement('img');
                         mineEl.classList.add('minesweeper__mine');
-                        mineEl.src = `/ver${VERSION}/img/minesweeper/mine.png`;
+                        mineEl.src = `ver${VERSION}/img/minesweeper/mine.png`;
                         cell.appendChild(mineEl);
                     } else {
                         addClass(cell, 'minesweeper__cell_not-mine');
