@@ -81,7 +81,8 @@ class Minesweeper extends Game {
                 this.loseAnimation(x, y);
             } else
                 this.propagateArea(x, y);
-            this.cellOpened();
+            if (val !== 9)
+                this.cellOpened();
         } else {
             if (!this.field)
                 return;
