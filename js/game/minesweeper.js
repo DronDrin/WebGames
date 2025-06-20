@@ -41,7 +41,7 @@ class Minesweeper extends Game {
         this.resize();
         this.leftToOpen = this.width * this.height - this.mines;
 
-        this.fieldEl.addEventListener('mousedown', e => {
+        this.mouseDown = e => {
             if (e.target.classList.contains('minesweeper__cell')) {
                 const cell = e.target;
                 const i = [...cell.parentNode.children].indexOf(cell);
@@ -49,11 +49,14 @@ class Minesweeper extends Game {
                     e.button === 0);
                 e.preventDefault();
             }
-        });
-        this.fieldEl.addEventListener('contextmenu', e => {
+        };
+        this.contextMenu = e => {
             e.preventDefault();
             return false;
-        })
+        };
+
+        this.fieldEl.addEventListener('mousedown', this.mouseDown);
+        this.fieldEl.addEventListener('contextmenu', this.contextMenu)
     }
 
     cellClick(cell, x, y, open) {
@@ -196,5 +199,7 @@ class Minesweeper extends Game {
 
     cleanup() {
         this.fieldEl.innerHTML = '';
+        this.fieldEl.removeEventListener('mousedown', this.mouseDown);
+        this.fieldEl.removeEventListener('contextmenu', this.contextMenu);
     }
 }
