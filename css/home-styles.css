@@ -1,6 +1,8 @@
 @import "common-styles.css";
 @import "slider.css";
 
+@import "game/minesweeper.css";
+
 .main {
     position: relative;
 }
