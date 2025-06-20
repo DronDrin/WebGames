@@ -1,3 +1,5 @@
+const games = ['minesweeper', 'anti-crossword', 'tetris'];
+
 let gameSlider, difficultySlider;
 let playButton;
 let currWindow;
@@ -24,7 +26,7 @@ window.addEventListener('load', () => {
     };
 
     playButton.addEventListener('click', () => {
-
+        openWindow(games[gameSlider.chosen]);
     });
 });
 

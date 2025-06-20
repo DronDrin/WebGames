@@ -57,3 +57,9 @@
     display: inline;
 }
 
+.main__resign {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 15pt;
+}
