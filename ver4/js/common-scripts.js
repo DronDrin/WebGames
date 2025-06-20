@@ -1,4 +1,4 @@
-const VERSION = 3;
+const VERSION = 4;
 
 function addClass(el, className) {
     if (!el.classList.contains(className))
