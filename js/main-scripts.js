@@ -43,14 +43,3 @@ window.addEventListener('load', () => {
         });
     });
 });
-
-
-function addClass(el, className) {
-    if (!el.classList.contains(className))
-        el.classList.add(className);
-}
-
-function removeClass(el, className) {
-    if (el.classList.contains(className))
-        el.classList.remove(className);
-}
