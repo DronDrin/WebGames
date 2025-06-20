@@ -81,6 +81,7 @@ class Minesweeper extends Game {
             if (cell.classList.contains('minesweeper__cell_flag')) {
                 cell.classList.remove('minesweeper__cell_flag');
                 cell.innerHTML = '';
+                this.minesSetByPlayer--;
             }
             else {
                 cell.classList.add('minesweeper__cell_flag');
@@ -88,7 +89,9 @@ class Minesweeper extends Game {
                 imgEl.classList.add('minesweeper__flag');
                 imgEl.src = 'img/minesweeper/flag.png';
                 cell.appendChild(imgEl);
+                this.minesSetByPlayer++;
             }
+            this.updateMinesLeft();
         }
     }
 
@@ -154,9 +157,9 @@ class Minesweeper extends Game {
 
     updateMinesLeft() {
         if (this.mines - this.minesSetByPlayer >= 0)
-            this.minesLeftEl.innterText = this.mines - this.minesSetByPlayer;
+            this.minesLeftEl.innerText = this.mines - this.minesSetByPlayer;
         else
-            this.minesLeftEl.innterText = "Х";
+            this.minesLeftEl.innerText = "Х";
     }
 
     resize() {
