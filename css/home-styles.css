@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    gap: 30px;
 
     pointer-events: none;
     opacity: 0;
@@ -33,4 +34,18 @@
 
 .main__slider:not(:last-child) {
     margin-bottom: 30px;
+}
+
+.main__ruleset {
+    font-size: 12pt;
+    font-weight: 400;
+    max-width: 500px;
+}
+
+.main__rules {
+    display: none;
+}
+
+.main__rules_active {
+    display: inline;
 }
