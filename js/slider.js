@@ -4,11 +4,19 @@ class Slider {
         this.cursor = this.el.querySelector('.slider__cursor');
         this.chosen = -1;
         this.onchange = i => {};
-        this.el.querySelector('.slider__body').addEventListener('mousedown', (e) => {
+
+        const hover = e => {
             if (e.target.classList.contains('slider__item')) {
                 this.change(e.target);
             }
+        };
+        this.el.querySelector('.slider__body').addEventListener('mousedown', hover);
+        this.el.querySelector('.slider__body').addEventListener('mouseup', hover);
+        this.el.querySelector('.slider__body').addEventListener('mousemove', e => {
+            if (e.buttons !== 0)
+                hover(e);
         });
+
         const firstItem = this.el.querySelector('.slider__item:first-child');
         if (firstItem)
             this.change(firstItem);
