@@ -48,6 +48,11 @@ window.addEventListener('load', () => {
                 game.lose();
         });
     });
+
+    window.addEventListener('resize', () => {
+       if (game)
+           game.resize();
+    });
 });
 
 function endGame() {

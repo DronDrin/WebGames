@@ -8,4 +8,7 @@ class Game {
 
     cleanup() {
     }
+
+    resize() {
+    }
 }
