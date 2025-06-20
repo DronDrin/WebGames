@@ -4,6 +4,7 @@
     position: relative;
     overflow: auto;
     padding: 20px;
+    width: fit-content;
 }
 
 .slider__cursor {
