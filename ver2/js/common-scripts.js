@@ -1,3 +1,5 @@
+const VERSION = 2;
+
 function addClass(el, className) {
     if (!el.classList.contains(className))
         el.classList.add(className);
