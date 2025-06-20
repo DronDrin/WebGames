@@ -16,6 +16,8 @@ const minesweeperDifficulties = [
     },
 ];
 
+const longHoldThreshold = 600;
+
 class Minesweeper extends Game {
     constructor(el, difficulty) {
         super(el, difficulty);
@@ -41,20 +43,42 @@ class Minesweeper extends Game {
         this.resize();
         this.leftToOpen = this.width * this.height - this.mines;
 
-        this.mouseDown = e => {
+        let mouseDownTime, mouseHold = false, lastDownEvent, mouseInterrupted = false;
+        this.mouseUp = e => {
+            mouseHold = false;
+            if (mouseInterrupted) {
+                mouseInterrupted = false;
+                return;
+            }
             if (e.target.classList.contains('minesweeper__cell')) {
                 const cell = e.target;
                 const i = [...cell.parentNode.children].indexOf(cell);
-                this.cellClick(cell, Math.floor(i / this.height), i % this.height,
-                    e.button === 0);
-                e.preventDefault();
+                let open = e.button === 0;
+                if (Date.now() - mouseDownTime > longHoldThreshold)
+                    open = false;
+                this.cellClick(cell, Math.floor(i / this.height), i % this.height, open);
             }
+        };
+        this.mouseDown = e => {
+            mouseHold = true;
+            lastDownEvent = e;
+            mouseDownTime = Date.now();
         };
         this.contextMenu = e => {
             e.preventDefault();
             return false;
         };
 
+        const mouseTimer = () => {
+            setTimeout(() => mouseTimer(), 10);
+            if (mouseHold && Date.now() - mouseDownTime > longHoldThreshold) {
+                this.mouseUp(lastDownEvent);
+                mouseInterrupted = true;
+            }
+        };
+        mouseTimer();
+
+        this.fieldEl.addEventListener('mouseup', this.mouseUp);
         this.fieldEl.addEventListener('mousedown', this.mouseDown);
         this.fieldEl.addEventListener('contextmenu', this.contextMenu);
         this.lost = false;
@@ -227,6 +251,7 @@ class Minesweeper extends Game {
 
     cleanup() {
         this.fieldEl.innerHTML = '';
+        this.fieldEl.removeEventListener('mouseup', this.mouseUp);
         this.fieldEl.removeEventListener('mousedown', this.mouseDown);
         this.fieldEl.removeEventListener('contextmenu', this.contextMenu);
     }
