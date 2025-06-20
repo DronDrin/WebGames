@@ -1,3 +1,28 @@
 .slider {
+    font-size: 20pt;
+    user-select: none;
+    position: relative;
+    overflow: auto;
+    padding: 20px;
+}
 
+.slider__cursor {
+    position: absolute;
+    background-color: var(--c1);
+    pointer-events: none;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.slider__body {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1em;
+    z-index: 2;
+}
+
+.slider__item {
+    cursor: pointer;
+    text-wrap: nowrap;
 }
