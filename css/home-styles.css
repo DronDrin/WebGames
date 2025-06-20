@@ -1,4 +1,5 @@
 @import "common-styles.css";
+@import "slider.css";
 
 .main {
     width: 100%;
@@ -6,30 +7,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.game-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.game-list__header {
-    text-align: center;
-}
-
-.game-list__header:not(:last-child) {
-    margin-bottom: 20px;
-}
-
-.game-list__games {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    font-size: 15pt;
-    align-items: center;
-}
-
-.game-list__game {
-    color: var(--c2);
 }
