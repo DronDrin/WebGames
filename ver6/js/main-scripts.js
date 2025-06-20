@@ -1,5 +1,8 @@
 const games = ['minesweeper', 'anti-crossword', 'tetris'];
-const gamesFactories = [(e, d) => new Minesweeper(e, d)];
+const gamesFactories = [
+    (e, d) => new Minesweeper(e, d),
+    (e, d) => new AntiCrossword(e, d)
+];
 
 let gameSlider, difficultySlider;
 let playButton;
@@ -71,9 +74,9 @@ window.addEventListener('load', () => {
     });
 
     document.querySelectorAll('.main__modal-close').forEach(el => {
-       el.addEventListener('click', () => {
+        el.addEventListener('click', () => {
             closeModalWindow(el.getAttribute('data-window'));
-       });
+        });
     });
 });
 
