@@ -89,6 +89,10 @@ class Minesweeper extends Game {
             if (mouseHold && Date.now() - mouseDownTime > longHoldThreshold) {
                 this.mouseUp(lastDownEvent);
                 mouseInterrupted = true;
+                if (navigator.mozVibrate)
+                    navigator.mozVibrate(200);
+                else
+                    navigator.vibrate(200);
             }
         };
         mouseTimer();
