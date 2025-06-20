@@ -202,7 +202,7 @@ class Minesweeper extends Game {
 
     resize() {
         const xPadding = 10;
-        const yPadding = 10;
+        const yPadding = 120;
         const aspectRatio = this.width / this.height;
 
         const byWidth = {
