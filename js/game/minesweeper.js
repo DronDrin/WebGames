@@ -73,6 +73,7 @@ class Minesweeper extends Game {
             if (val > 0 && val < 9) {
                 const numEl = document.createElement("div");
                 numEl.classList.add('minesweeper__num');
+                numEl.classList.add(`minesweeper__num_${val}`);
                 numEl.innerText = val;
                 cell.appendChild(numEl);
             } else if (val === 9) {
@@ -120,6 +121,7 @@ class Minesweeper extends Game {
                     else if (val < 9) {
                         const numEl = document.createElement("div");
                         numEl.classList.add('minesweeper__num');
+                        numEl.classList.add(`minesweeper__num_${val}`);
                         numEl.innerText = val;
                         cell.appendChild(numEl);
                     }

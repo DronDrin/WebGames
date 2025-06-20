@@ -1,0 +1,31 @@
+.minesweeper__num_1 {
+    color: var(--c3);
+}
+
+.minesweeper__num_2 {
+    color: #288365;
+}
+
+.minesweeper__num_3 {
+    color: #b18418;
+}
+
+.minesweeper__num_4 {
+    color: #1352c8;
+}
+
+.minesweeper__num_5 {
+    color: #71119f;
+}
+
+.minesweeper__num_6 {
+    color: #ed0000;
+}
+
+.minesweeper__num_7 {
+    color: #000000;
+}
+
+.minesweeper__num_8 {
+    color: #ffec00;
+}
