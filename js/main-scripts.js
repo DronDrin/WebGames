@@ -1,5 +1,5 @@
 const games = ['minesweeper', 'anti-crossword', 'tetris'];
-const gamesFactories = [];
+const gamesFactories = [(e, d) => new Minesweeper(e, d)];
 
 let gameSlider, difficultySlider;
 let playButton;
@@ -28,18 +28,32 @@ window.addEventListener('load', () => {
     };
 
     playButton.addEventListener('click', () => {
-        const gameI = games[gameSlider.chosen];
-        openWindow(gameI);
+        const gameI = gameSlider.chosen;
+        openWindow(games[gameI]);
         game = gamesFactories[gameI](currWindow, difficultySlider.chosen);
-    });
+        game.win = () => {
+            openWindow('win');
+        };
+        game.lose = () => {
+            openWindow('lose');
+        };
+    })
+
+    document.querySelectorAll('.main__home-button').forEach(b =>
+        b.addEventListener('click', endGame));
 
     document.querySelectorAll('.main__resign').forEach(el => {
         el.addEventListener('click', () => {
-            if (game) {
-                game.cleanup();
-                game = null;
-            }
-            openWindow('selector')
+            if (game)
+                game.lose();
         });
     });
 });
+
+function endGame() {
+    if (game) {
+        game.cleanup();
+        game = null;
+    }
+    openWindow('selector')
+}

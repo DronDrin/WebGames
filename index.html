@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="css/home-styles.css">
     <script src="js/common-scripts.js"></script>
     <script src="js/slider.js"></script>
-    <script src="js/main-scripts.js"></script>
-
+    <script src="js/game/game.js"></script>
     <script src="js/game/minesweeper.js"></script>
+    <script src="js/main-scripts.js"></script>
 </head>
 <body>
 <main class="main">
@@ -49,6 +49,18 @@
         </div>
         <div class="button main__play" role="button" id="playButton">
             Играть!
+        </div>
+    </div>
+    <div class="main__window" data-window="win">
+        <h2 class="main__header">Вы победили!</h2>
+        <div class="button main__home-button">
+            На главную
+        </div>
+    </div>
+    <div class="main__window" data-window="lose">
+        <h2 class="main__header">Вы проиграли!</h2>
+        <div class="button main__home-button">
+            На главную
         </div>
     </div>
     <div class="main__window" data-window="minesweeper">
