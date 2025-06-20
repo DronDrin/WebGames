@@ -18,3 +18,18 @@ body {
     color: var(--c3);
     font-family: 'Comic Relief', Arial, serif;
 }
+
+.button {
+    cursor: pointer;
+    user-select: none;
+    font-size: 25pt;
+    width: fit-content;
+    padding: 7px 14px;
+    background-color: var(--c1);
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    box-shadow: rgba(67, 67, 67, 0.29) 0 0 10px 5px;
+}
