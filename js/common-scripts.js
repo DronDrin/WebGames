@@ -11,3 +11,10 @@ function removeClass(el, className) {
 function rndInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
+function shuffleArray(arr) {
+    return arr
+        .map(value => ({value, sort: Math.random()}))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({value}) => value);
+}
