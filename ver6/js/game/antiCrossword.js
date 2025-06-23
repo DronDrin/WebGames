@@ -57,6 +57,15 @@ class AntiCrossword extends Game {
             const direction = rndInt(0, 2) === 0;
             for (let c = cord; c < cord + len; c++)
                 this.words[i].word.push(direction ? field[c][alignment] : field[alignment][c]);
+
+            let alreadyExists = false;
+            for (let j = 0; j < i && !alreadyExists; j++)
+                alreadyExists = this.words[j].word.toString() === this.words[i].word.toString();
+
+            if (alreadyExists) {
+                i--;
+                this.words.pop();
+            }
         }
 
         this.wordListEl = el.querySelector('.anti-crossword__word-list');
