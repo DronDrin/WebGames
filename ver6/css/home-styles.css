@@ -2,6 +2,7 @@
 @import "slider.css";
 
 @import "game/minesweeper.css";
+@import "game/anti-crossword.css";
 
 .main {
     width: 100%;
