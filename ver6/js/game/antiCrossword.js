@@ -107,8 +107,10 @@ class AntiCrossword extends Game {
             }
             removeClass(this.letterSelectorEl, 'anti-crossword__letter-selector_open');
 
-            if (this.updateWordPlaced())
+            if (this.updateWordPlaced()) {
                 this.win();
+                this.fieldEl.removeEventListener('click', this.fieldOnClick);
+            }
         };
 
         this.letterSelectorEl.addEventListener('click', this.letterSelectorOnClick);
