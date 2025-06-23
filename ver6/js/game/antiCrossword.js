@@ -74,6 +74,52 @@ class AntiCrossword extends Game {
         };
         this.wordListCloseButton.addEventListener('click', this.wordListCloseButtonOnClick);
 
+        this.letterSelectorEl = el.querySelector('.anti-crossword__letter-selector');
+        this.fieldOnClick = e => {
+            let cellEl = e.target;
+            if (cellEl.classList.contains('anti-crossword__letter'))
+                cellEl = cellEl.parentNode;
+            if (cellEl.classList.contains('anti-crossword__cell')) {
+                this.choosingCellEl = cellEl;
+                addClass(this.letterSelectorEl, 'anti-crossword__letter-selector_open');
+            }
+        };
+        this.fieldEl.addEventListener('click', this.fieldOnClick);
+
+        this.letterSelectorOnClick = e => {
+            if (!e.target.classList.contains('anti-crossword__symbol'))
+                return;
+            let chosenLetter = Array.prototype.indexOf.call(this.letterSelectorEl.children, e.target);
+            if (chosenLetter === 9)
+                chosenLetter = -1;
+
+            const i = Array.prototype.indexOf.call(this.fieldEl.children, this.choosingCellEl);
+            const x = i % this.size;
+            const y = Math.floor(i / this.size);
+            this.field[x][y] = chosenLetter;
+
+            this.choosingCellEl.innerHTML = '';
+            if (chosenLetter >= 0) {
+                const imgEl = document.createElement("img");
+                imgEl.classList.add('anti-crossword__letter');
+                imgEl.src = `ver${VERSION}/img/anticrossword/letter_${chosenLetter}.png`;
+                this.choosingCellEl.appendChild(imgEl);
+            }
+            removeClass(this.letterSelectorEl, 'anti-crossword__letter-selector_open');
+
+            if (this.updateWordPlaced())
+                this.win();
+        };
+
+        this.letterSelectorEl.addEventListener('click', this.letterSelectorOnClick);
+
+        this.field = [];
+        for (let i = 0; i < this.size; i++) {
+            this.field[i] = [];
+            for (let j = 0; j < this.size; j++)
+                this.field[i][j] = -1;
+        }
+
         this.resize();
     }
 
@@ -84,6 +130,8 @@ class AntiCrossword extends Game {
         for (const word of this.words) {
             const wordEl = document.createElement("div");
             wordEl.classList.add('anti-crossword__word');
+            if (word.placed)
+                wordEl.classList.add('anti-crossword__word_placed');
             for (const letterI of word.word) {
                 const letterEl = document.createElement("img");
                 letterEl.classList.add('anti-crossword__symbol');
@@ -103,11 +151,11 @@ class AntiCrossword extends Game {
                 const wh = [], wv = [];
                 for (let i = 0; i < this.maxWordLen; i++) {
                     if (x + i < this.size) {
-                        wh.push(x + i);
+                        wh.push(this.field[x + i][y]);
                         this.markWordsAsPlaced(wh);
                     }
                     if (y + i < this.size) {
-                        wv.push(y + i);
+                        wv.push(this.field[x][y + i]);
                         this.markWordsAsPlaced(wv);
                     }
                 }
@@ -122,7 +170,7 @@ class AntiCrossword extends Game {
 
     markWordsAsPlaced(word) {
         for (const w of this.words)
-            if (w.toString() === word.toString())
+            if (w.word.toString() === word.toString())
                 w.placed = true;
     }
 
@@ -131,6 +179,9 @@ class AntiCrossword extends Game {
 
         this.wordListButton.removeEventListener('click', this.wordListButtonOnClick);
         this.wordListCloseButton.removeEventListener('click', this.wordListCloseButtonOnClick);
+
+        this.fieldEl.removeEventListener('click', this.fieldOnClick);
+        this.letterSelectorEl.removeEventListener('click', this.letterSelectorOnClick);
     }
 
     resize() {

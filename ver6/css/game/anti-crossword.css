@@ -65,6 +65,10 @@
     position: relative;
 }
 
+.anti-crossword__word_placed {
+    filter: brightness(50%);
+}
+
 .anti-crossword__symbol {
     height: 100%;
     filter: invert(1);
@@ -102,4 +106,41 @@
 
 .anti-crossword__word-list-close::before {
     transform: translate(-50%, -50%) rotateZ(-45deg);
+}
+
+
+.anti-crossword__letter-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.anti-crossword__letter-selector_open {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.anti-crossword__letter-selector .anti-crossword__symbol {
+    max-width: 50px;
+    max-height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.anti-crossword__letter-selector .anti-crossword__symbol:last-child {
+    filter: invert(1) saturate(42) hue-rotate(60deg);
+}
+
+.anti-crossword__letter-selector .anti-crossword__symbol:hover {
+    transform: scale(1.2);
 }
