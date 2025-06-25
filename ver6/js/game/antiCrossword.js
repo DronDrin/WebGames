@@ -1,16 +1,16 @@
 const antiCrosswordParams = {
     difficulties: [
         {
-            wordRatio: 0.7,
-            fieldSize: 4
-        },
-        {
-            wordRatio: 0.9,
+            wordRatio: 1.1,
             fieldSize: 5
         },
         {
-            wordRatio: 1.1,
+            wordRatio: 1.2,
             fieldSize: 6
+        },
+        {
+            wordRatio: 1.3,
+            fieldSize: 7
         }
     ]
 };
